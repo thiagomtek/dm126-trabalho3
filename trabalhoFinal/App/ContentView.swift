@@ -8,15 +8,15 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var isLogged: Bool = false
+    
     var body: some View {
-        ScrollView {
-            VStack {
-                NavigationBar()
-                FeaturesGrid()
-                CarouselTabView()
-                GoalContainer()
-            }
-            .padding()
+        if isLogged {
+            HomeView()
+                .transition(.move(edge: .trailing))
+        } else {
+            LoginView(isLogged: $isLogged)
+                .transition(.move(edge: .leading))
         }
     }
 }
